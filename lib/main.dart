@@ -62,9 +62,10 @@ class _BluetoothScreenState extends State<BluetoothScreen> {
         itemBuilder: (context, index) {
           return ListTile(
             title: Text(devicesList[index].name == ''
-                ? 'Unknown device'
-                : devicesList[index].name),
-            subtitle: Text(devicesList[index].id.toString()),
+                ? '! Unknown device'
+                : '> ${devicesList[index].name}'),
+            subtitle: Text(devicesList[index].toString()),
+            //subtitle: Text(devicesList[index].id.toString()),
             onTap: () async {
               await devicesList[index].connect();
               Navigator.of(context).push(
@@ -117,7 +118,9 @@ class _DeviceScreenState extends State<DeviceScreen> {
         itemCount: services.length,
         itemBuilder: (context, index) {
           return ListTile(
-            title: Text('Service ${services[index].uuid}'),
+            title: Text('UUID ${services[index].uuid}'),
+            subtitle: Text(services[index].toString()),
+            // for the subTitle, step through all of the properties of services[]
             onTap: () {
               // You can implement characteristic discovery and interaction here.
             },
